@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>절연저항 계산기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>절연저항 계산기</h2>
+        <p>전압 (V)와 전류 (A)를 입력하세요.</p>
+        <input type="number" id="voltage" placeholder="전압 (V)" required>
+        <input type="number" id="current" placeholder="전류 (A)" required>
+        <button onclick="calculateResistance()">계산하기</button>
+        <h3 id="result">절연저항 값: -</h3>
+    </div>
+
+    <div class="container">
+        <h3>결과 보기 전, 맞춤 추천 상품과 함께 확인하시겠어요?</h3>
+        <button onclick="openLinks()">네, 추천 할인 상품 같이 보기(최저가)</button>
+        <button onclick="skipLinks()">아니요</button>
+    </div>
+
+    <script>
+        function calculateResistance() {
+            let voltage = parseFloat(document.getElementById("voltage").value);
+            let current = parseFloat(document.getElementById("current").value);
+            
+            if (isNaN(voltage) || isNaN(current) || current === 0) {
+                alert("올바른 값을 입력하세요. 전류는 0이 될 수 없습니다.");
+                return;
+            }
+            
+            let resistance = voltage / current;
+            document.getElementById("result").innerText = `절연저항 값: ${resistance.toFixed(2)} Ω`;
+        }
+
+        function openLinks() {
+            window.open("https://msearch.shopping.naver.com/search/all?adQuery=%EC%A0%88%EC%97%B0%EC%A0%80%ED%95%AD%EC%B8%A1%EC%A0%95%EA%B8%B0%20ir4051&maxPrice=189000&minPrice=187000&origQuery=%EC%A0%88%EC%97%B0%EC%A0%80%ED%95%AD%EC%B8%A1%EC%A0%95%EA%B8%B0%20ir4051&pagingIndex=1&pagingSize=40&productSet=total&query=%EC%A0%88%EC%97%B0%EC%A0%80%ED%95%AD%EC%B8%A1%EC%A0%95%EA%B8%B0%20ir4051&sort=rel&viewType=list", "_blank");
+            window.open("https://www.coupang.com/vp/products/8638730205?vendorItemId=92072164247&isAddedCart=", "_blank");
+        }
+        
+        function skipLinks() {
+            alert("결과만 확인합니다.");
+        }
+    </script>
+</body>
+</html>
