@@ -34,6 +34,9 @@
         button:hover {
             background-color: #0056b3;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -46,7 +49,7 @@
         <h3 id="result">절연저항 값: -</h3>
     </div>
 
-    <div class="container">
+    <div class="container hidden" id="recommendation">
         <h3>결과 보기 전, 맞춤 추천 상품과 함께 확인하시겠어요?</h3>
         <button onclick="openLinks()">네, 추천 할인 상품 같이 보기(최저가)</button>
         <button onclick="skipLinks()">아니요</button>
@@ -64,6 +67,9 @@
             
             let resistance = voltage / current;
             document.getElementById("result").innerText = `절연저항 값: ${resistance.toFixed(2)} Ω`;
+            
+            // 결과가 나오면 추천 상품 선택창 표시
+            document.getElementById("recommendation").classList.remove("hidden");
         }
 
         function openLinks() {
@@ -73,6 +79,7 @@
         
         function skipLinks() {
             alert("결과만 확인합니다.");
+            document.getElementById("recommendation").classList.add("hidden");
         }
     </script>
 </body>
